@@ -296,9 +296,15 @@ const sendOrder = () => {
     //Vérification si tout le formulaire est correct avant l'envoi
     let formIsOk = true;
 
-    [firstName, lastName, address, city, email].forEach((e) => {
+    [address, city].forEach((e) => {
       if (!validInput(e)) formIsOk = false;
     });
+
+    [firstName, lastName].forEach((e) => {
+      if (!validName(e)) formIsOk = false;
+    });
+
+    if (!validEmail(email)) formIsOk = false;
 
     if (formIsOk) {
       try {
