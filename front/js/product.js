@@ -17,6 +17,7 @@ fetch(urlKanap)
     alert(err);
   });
 
+// Fonction permettant d'afficher le produit choisie
 let kanapProduct = (product) => {
   const imgProduct = document.createElement("img");
   document.getElementsByClassName("item__img")[0].appendChild(imgProduct);
