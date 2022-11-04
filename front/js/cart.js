@@ -84,19 +84,6 @@ const cartProductDisplay = async () => {
 cartProductDisplay();
 
 // *******************************************************
-
-const totalsProductAndPrice = () => {
-  if (currentCart) {
-    for (let t = 0; t < currentCart.length; t++) {
-      console.log(
-        productPriceAndId[currentCart[t].id],
-        currentCart[t].quantity
-      );
-    }
-  }
-};
-
-// *******************************************************
 const displayResults = (quantityTotals, priceTotals) => {
   document.getElementById("totalQuantity").innerHTML = quantityTotals;
   document.getElementById("totalPrice").innerHTML = priceTotals;
@@ -192,7 +179,7 @@ const useBtnSuppr = () => {
 // **************************FORMULAIRE****************************** */
 //****************************************************************** */
 
-//******Fonction de validation des champs Nom, prénom, adresse et ville */
+//******Fonction de validation des champs adresse et ville */
 const validInput = function (input) {
   let textError = input.nextElementSibling;
   if (input.value.length > 0) {
@@ -204,16 +191,35 @@ const validInput = function (input) {
   }
 };
 
+//******Fonction de validation des champs Prénom et Nom */
+const validName = (inputName) => {
+  //Création des conditions d'acceptation du Nom et Prénom
+  let nameRegExp = new RegExp("^([a-z]+[,.]?[ ]?|[a-z]+['-]?)+$");
+  let textError = inputName.nextElementSibling;
+  if (inputName.value.length > 0) {
+    if (nameRegExp.test(inputName.value)) {
+      textError.innerHTML = "";
+      return true;
+    } else {
+      textError.innerHTML = "Format incorrect. Ex : John";
+      return false;
+    }
+  } else {
+    textError.innerHTML = "Veuillez renseigner ce champ";
+    return false;
+  }
+};
+
 //Variable du champ Prénom
 const firstName = document.getElementById("firstName");
 firstName.addEventListener("change", function () {
-  validInput(firstName);
+  validName(firstName);
 });
 
 //Variable du champ Nom
 const lastName = document.getElementById("lastName");
 lastName.addEventListener("change", function () {
-  validInput(lastName);
+  validName(lastName);
 });
 
 //Variable du champ Adresse
@@ -236,7 +242,6 @@ email.addEventListener("change", function () {
 
 //******Fonction de validation du champ email */
 const validEmail = (inputEmail) => {
-  console.log(inputEmail.value);
   //Création des conditions d'acceptation de l'email
   let emailRegExp = new RegExp("[a-z0-9]+@[a-z]+\\.[a-z]{2,3}");
   let textError = inputEmail.nextElementSibling;
