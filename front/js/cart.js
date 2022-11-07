@@ -1,5 +1,4 @@
 let currentCart = JSON.parse(localStorage.getItem("produit"));
-console.log(currentCart);
 
 //Fonction d'affichage du panier vide
 function emptyCart() {
@@ -266,7 +265,6 @@ const idItem = () => {
   if (currentCart) {
     for (element of currentCart) {
       idItems.push(element.id);
-      console.log(element.id);
     }
   }
 };
