@@ -278,6 +278,10 @@ const order = document.getElementById("order");
 const sendOrder = () => {
   order.addEventListener("click", function (event) {
     event.preventDefault();
+    if (!currentCart || currentCart.length === 0) {
+      alert("Le panier ne doit pas être vide !!");
+      return;
+    }
     //Récupération des informations du formulaire
     const contactClient = {
       firstName: firstName.value,

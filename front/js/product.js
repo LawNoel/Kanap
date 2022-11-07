@@ -53,6 +53,10 @@ const addCart = () => {
     //Récupération des données du produit
     const selectColor = document.getElementById("colors");
     const formQuantity = document.getElementById("quantity").value;
+    if (formQuantity < 1 || formQuantity > 100) {
+      alert("La quantité doit être comprise entre 1 et 100.");
+      return;
+    }
     const infoKanap = {
       id: id,
       color: selectColor.value,
